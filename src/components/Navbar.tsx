@@ -11,7 +11,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex-shrink-0">
           <Link to="/" className="text-2xl font-bold text-white relative group">
-            <span className="relative z-10 glow-hover">Regal Nex</span>
+            <span className="absolute inset-0 blur-lg bg-regal-green/20 opacity-60 group-hover:opacity-90 transition-opacity duration-300 rounded-full -z-10 animate-pulse-glow"></span>
+            <span className="relative z-10 glow-hover inline-flex">
+              <span className="text-white">Regal </span>
+              <span className="text-regal-green">Nex</span>
+            </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-regal-green group-hover:w-full transition-all duration-300"></span>
           </Link>
         </div>

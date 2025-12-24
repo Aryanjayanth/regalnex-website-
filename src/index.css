@@ -1,6 +1,10 @@
-
+/* stylelint-disable at-rule-no-unknown */
+/* stylelint-disable scss/at-rule-no-unknown */
+/* stylelint-disable-next-line */
 @tailwind base;
+/* stylelint-disable-next-line */
 @tailwind components;
+/* stylelint-disable-next-line */
 @tailwind utilities;
 
 @keyframes scroll {
@@ -114,11 +118,13 @@
 
 @layer base {
   * {
-    @apply border-border;
+    /* stylelint-disable-next-line */
+  @apply border-border;
   }
 
   body {
-    @apply bg-regal-black text-white font-sans;
+    /* stylelint-disable-next-line */
+  @apply bg-regal-black text-white font-sans;
   }
 
   #root {
@@ -134,10 +140,13 @@
 
 @layer components {
   .tag-pill {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs;
+    /* stylelint-disable-next-line */
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs;
   }
 
   .glow-hover {
+    text-shadow: 0 0 10px rgba(4, 255, 128, 0.25),
+                 0 0 20px rgba(4, 255, 128, 0.15);
     transition: text-shadow 0.3s ease;
   }
 
