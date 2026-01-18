@@ -43,11 +43,11 @@ const ToolStackSection = () => {
           <div className="lg:col-span-8">
             <div className="flex flex-col space-y-6">
               {tools.map((tool, index) => (
-                <Card key={index} className="group bg-white hover:bg-white transition-all duration-300 border border-gray-200 hover:border-regal-green/50 w-full hover:shadow-lg hover:shadow-regal-green/10 overflow-hidden rounded-xl">
-                  <CardContent className="p-6">
+                <div key={index} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 overflow-hidden">
+                  <div className="p-6">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-10 h-10 bg-regal-green/10 flex items-center justify-center group-hover:bg-regal-green/20 transition-colors duration-300">
+                        <div className="w-12 h-12 bg-regal-green/10 rounded-lg flex items-center justify-center">
                           <span className="text-2xl">{tool.icon}</span>
                         </div>
                       </div>
@@ -56,8 +56,8 @@ const ToolStackSection = () => {
                         <p className="text-gray-600">{tool.description}</p>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
