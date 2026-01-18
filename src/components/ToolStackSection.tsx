@@ -26,9 +26,9 @@ const ToolStackSection = () => {
 
   return (
     <section className="py-16 bg-regal-black">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-4 lg:sticky lg:top-24">
+          <div className="lg:col-span-4 lg:sticky lg:top-24 lg:pl-8">
             <div className="flex items-center gap-2 mb-2">
               <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-medium rounded bg-zinc-800 text-green-400">
                 Designed for your shop
@@ -43,11 +43,15 @@ const ToolStackSection = () => {
           <div className="lg:col-span-8">
             <div className="flex flex-col space-y-6">
               {tools.map((tool, index) => (
-                <Card key={index} className="bg-white border-gray-200 hover:border-regal-green/50 transition-colors w-full hover:shadow-lg hover:shadow-regal-green/10">
+                <Card key={index} className="group bg-white hover:bg-white transition-all duration-300 border border-gray-200 hover:border-regal-green/50 w-full hover:shadow-lg hover:shadow-regal-green/10 overflow-hidden rounded-xl">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <span className="text-2xl">{tool.icon}</span>
-                      <div>
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 bg-regal-green/10 flex items-center justify-center group-hover:bg-regal-green/20 transition-colors duration-300">
+                          <span className="text-2xl">{tool.icon}</span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
                         <h3 className="text-xl font-semibold mb-2 text-regal-green">{tool.title}</h3>
                         <p className="text-gray-600">{tool.description}</p>
                       </div>
