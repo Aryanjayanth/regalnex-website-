@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,7 +12,7 @@ import Contact from "./pages/Contact";
 import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
-import { initGA, trackPageView } from "./utils/analytics";
+import initGA, { trackPageView } from "./utils/analytics";
 
 // Initialize queryClient at the module level
 const queryClient = new QueryClient();
@@ -69,6 +70,7 @@ const App = () => {
           <ScrollToTop />
           <AppContent />
         </BrowserRouter>
+        <Analytics />
       </TooltipProvider>
     </QueryClientProvider>
   );
