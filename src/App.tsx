@@ -23,39 +23,15 @@ import Contact from "./pages/Contact";
 import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
-
-// Initialize Google Analytics
-const initGoogleAnalytics = () => {
-  // Only run in production
-  if (process.env.NODE_ENV !== 'production') return;
-
-  // Add the GA script to the document
-  const script = document.createElement('script');
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.REACT_APP_GA_MEASUREMENT_ID}`;
-  script.async = true;
-  document.head.appendChild(script);
-
-  // Initialize dataLayer and gtag function with proper typing
-  window.dataLayer = window.dataLayer || [];
-  const gtag = (...args: any[]) => {
-    window.dataLayer.push(args);
-  };
-  window.gtag = gtag;
-  
-  // Initialize GA
-  gtag('js', new Date());
-  gtag('config', process.env.REACT_APP_GA_MEASUREMENT_ID as string);
-};
+import { initGA, trackPageView } from "./utils/analytics";
 
 // Track page views
 const usePageTracking = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production' && window.gtag) {
-      window.gtag('config', process.env.REACT_APP_GA_MEASUREMENT_ID as string, {
-        page_path: location.pathname + location.search,
-      });
+    if (process.env.NODE_ENV === 'production') {
+      trackPageView(location.pathname + location.search);
     }
   }, [location]);
 };
@@ -81,7 +57,8 @@ const AppContent = () => {
 
 const App = () => {
   useEffect(() => {
-    initGoogleAnalytics();
+    // Initialize Google Analytics
+    initGA();
   }, []);
 
   return (

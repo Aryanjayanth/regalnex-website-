@@ -5,9 +5,27 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ME22X2JDD1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){window.dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-ME22X2JDD1');
+      gtag('config', 'G-ME22X2JDD1', {
+        'send_page_view': true,
+        'transport_type': 'beacon',
+        'anonymize_ip': true
+      });
+      
+      // Debugging
+      console.log('Google Analytics initialized with ID: G-ME22X2JDD1');
+      
+      // Verify script loaded
+      const gaScript = document.createElement('script');
+      gaScript.onload = function() {
+        console.log('Google Analytics script loaded successfully');
+      };
+      gaScript.onerror = function() {
+        console.error('Failed to load Google Analytics script');
+      };
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-ME22X2JDD1';
+      document.head.appendChild(gaScript);
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
