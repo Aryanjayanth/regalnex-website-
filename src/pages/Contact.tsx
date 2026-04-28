@@ -5,7 +5,6 @@ import {
   Twitter,
   Mail,
   Phone,
-  MapPin,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -100,28 +99,8 @@ const Contact: React.FC = () => {
                     </div>
                     <p className="text-lg group-hover:text-regal-green transition-colors">likithlikithsd@gmail.com</p>
                   </div>
-                  <div className="flex items-center space-x-4 group">
-                    <div className="p-3 bg-regal-green/10 rounded-lg border border-regal-green/30 group-hover:bg-regal-green/20 transition-all duration-300">
-                      <MapPin className="h-6 w-6 text-regal-green" />
-                    </div>
-                    <p className="text-lg group-hover:text-regal-green transition-colors">123 Innovation Drive, Silicon Valley</p>
-                  </div>
                 </div>
 
-                <div className="pt-6 border-t border-gray-800">
-                  <h3 className="text-xl font-semibold mb-4">Connect With Us</h3>
-                  <div className="flex space-x-6">
-                    <Link to="#" className="p-3 bg-regal-green/10 rounded-lg border border-regal-green/30 text-regal-green hover:bg-regal-green/20 transition-all duration-300">
-                      <Twitter className="h-6 w-6" />
-                    </Link>
-                    <Link to="#" className="p-3 bg-regal-green/10 rounded-lg border border-regal-green/30 text-regal-green hover:bg-regal-green/20 transition-all duration-300">
-                      <Linkedin className="h-6 w-6" />
-                    </Link>
-                    <Link to="#" className="p-3 bg-regal-green/10 rounded-lg border border-regal-green/30 text-regal-green hover:bg-regal-green/20 transition-all duration-300">
-                      <Facebook className="h-6 w-6" />
-                    </Link>
-                  </div>
-                </div>
               </motion.div>
 
               <motion.div

@@ -26,10 +26,6 @@ const Navbar = () => {
             <span>Home</span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-regal-green/70 group-hover:w-full transition-all duration-300"></span>
           </Link>
-          <Link to="/case-studies" className="text-white hover:text-regal-green transition-colors relative group">
-            <span>Case Studies</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-regal-green/70 group-hover:w-full transition-all duration-300"></span>
-          </Link>
           <Link to="/pricing" className="text-white hover:text-regal-green transition-colors relative group">
             <span>Pricing</span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-regal-green/70 group-hover:w-full transition-all duration-300"></span>
@@ -68,13 +64,6 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Home
-            </Link>
-            <Link 
-              to="/case-studies" 
-              className="text-white hover:text-regal-green transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Case Studies
             </Link>
             <Link 
               to="/pricing" 
