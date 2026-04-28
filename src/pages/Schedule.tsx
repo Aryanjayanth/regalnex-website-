@@ -1,9 +1,65 @@
 
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Schedule = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    interest: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          company: formData.company,
+          subject: formData.interest,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        alert('Call scheduled successfully! We will contact you soon.');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          company: '',
+          interest: '',
+          message: ''
+        });
+      } else {
+        alert('Failed to schedule call. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error scheduling call:', error);
+      alert('Failed to schedule call. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -20,13 +76,16 @@ const Schedule = () => {
             </div>
             
             <div className="bg-regal-dark rounded-xl border border-gray-800 p-8">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-400 mb-2">First Name</label>
                     <input
                       type="text"
                       id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       className="w-full bg-black/30 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-regal-green"
                       placeholder="John"
                       required
@@ -38,6 +97,9 @@ const Schedule = () => {
                     <input
                       type="text"
                       id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
                       className="w-full bg-black/30 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-regal-green"
                       placeholder="Doe"
                       required
@@ -50,6 +112,9 @@ const Schedule = () => {
                   <input
                     type="email"
                     id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full bg-black/30 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-regal-green"
                     placeholder="johndoe@example.com"
                     required
@@ -61,6 +126,9 @@ const Schedule = () => {
                   <input
                     type="text"
                     id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
                     className="w-full bg-black/30 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-regal-green"
                     placeholder="Your Company"
                     required
@@ -71,6 +139,9 @@ const Schedule = () => {
                   <label htmlFor="interest" className="block text-sm font-medium text-gray-400 mb-2">I'm interested in...</label>
                   <select
                     id="interest"
+                    name="interest"
+                    value={formData.interest}
+                    onChange={handleChange}
                     className="w-full bg-black/30 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-regal-green"
                     required
                   >
@@ -86,6 +157,9 @@ const Schedule = () => {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Additional Information</label>
                   <textarea
                     id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     rows={4}
                     className="w-full bg-black/30 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-regal-green"
                     placeholder="Tell us more about your automation needs..."
@@ -94,9 +168,10 @@ const Schedule = () => {
                 
                 <button
                   type="submit"
-                  className="w-full bg-regal-green text-black font-semibold py-3 rounded-lg hover:bg-regal-green/90 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full bg-regal-green text-black font-semibold py-3 rounded-lg hover:bg-regal-green/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Schedule My Call
+                  {isSubmitting ? 'Scheduling...' : 'Schedule My Call'}
                 </button>
               </form>
             </div>

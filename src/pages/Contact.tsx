@@ -45,8 +45,31 @@ const Contact: React.FC = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    // Handle form submission
+    try {
+      const response = await fetch(`https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          subject: 'Contact Form Inquiry',
+          message: values.message,
+        }),
+      });
+
+      if (response.ok) {
+        alert('Message sent successfully! We will get back to you soon.');
+        form.reset();
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to send message. Please try again.');
+    }
   };
 
   return (
@@ -97,7 +120,7 @@ const Contact: React.FC = () => {
                     <div className="p-3 bg-regal-green/10 rounded-lg border border-regal-green/30 group-hover:bg-regal-green/20 transition-all duration-300">
                       <Mail className="h-6 w-6 text-regal-green" />
                     </div>
-                    <p className="text-lg group-hover:text-regal-green transition-colors">likithlikithsd@gmail.com</p>
+                    <p className="text-lg group-hover:text-regal-green transition-colors">info@regalnex.com</p>
                   </div>
                 </div>
 
